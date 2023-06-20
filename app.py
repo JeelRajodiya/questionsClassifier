@@ -1,6 +1,6 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import logging
-from functions import predict
+from functions import predict, predArray
 #  Run this command to publish
 # az webapp up --name QuestionsClassifier --resource-group cloud-shell-storage-centralindia --sku F1
 app = Flask(__name__)
@@ -20,6 +20,13 @@ def predictText():
     text = request.args.get('text')
     prediction = predict(text)
     return prediction
+
+
+@app.route('/predict', methods=['POST'])
+def predictTextPost():
+    textArray = request.get_json()
+    prediction = predArray(textArray)
+    return jsonify(prediction.tolist())
 
 
 if __name__ == '__main__':
