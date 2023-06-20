@@ -6,11 +6,11 @@ import fetch from "node-fetch";
 async function run() {
 	const questions = {
 		questions: [
-			"what is the capital of india?",
-			"what is the capital of china?",
-		]
-	}
-			
+			"what is the capital of india",
+			"what is the capital of china",
+		],
+	};
+	// console.log(JSON.stringify(questions));
 	const res = await fetch(
 		"https://questionsclassifier.azurewebsites.net/predict",
 		{
@@ -18,8 +18,8 @@ async function run() {
 			body: JSON.stringify(questions),
 		}
 	);
-	// const data = await res.json();
-	// console.log(data);
+	const data = await res.json();
+	console.log(data);
 }
 
 run();
