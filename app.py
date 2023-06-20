@@ -24,7 +24,7 @@ def predictText():
 
 @app.route('/predict', methods=['POST'])
 def predictTextPost():
-    textArray = request.get_json()
+    textArray = request.get_json()['questions']
     prediction = predArray(textArray)
     return jsonify(prediction.tolist())
 
